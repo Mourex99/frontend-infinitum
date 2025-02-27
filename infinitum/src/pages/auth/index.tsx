@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook } from 'react-icons/fa';
+import { useRouter } from 'next/router';
 import {
   Container,
   AuthCard,
@@ -17,12 +18,14 @@ import {
 } from './styles';
 
 const LoginForm = () => {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Implementar lógica de login
+    // Simulação de login bem-sucedido
+    router.push('/home');
   };
 
   return (
@@ -85,11 +88,12 @@ const RegisterForm = () => {
 };
 
 export default function Auth() {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState('login');
 
   const handleSocialLogin = (provider: string) => {
-    // Implementar lógica de login social
     console.log(`Login com ${provider}`);
+    router.push('/home');
   };
 
   return (
