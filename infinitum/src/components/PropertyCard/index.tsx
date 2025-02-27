@@ -1,4 +1,5 @@
-import Image from 'next/image'
+import Image from 'next/image';
+import { useRouter } from 'next/router';
 import { 
   Card, 
   ImageContainer, 
@@ -6,18 +7,25 @@ import {
   PropertyTitle, 
   PropertyPrice, 
   PropertyLocation 
-} from './styles'
+} from './styles';
 
 interface PropertyCardProps {
-  title: string
-  price: string
-  location: string
-  image: string
+  id: number;
+  title: string;
+  price: string;
+  location: string;
+  image: string;
 }
 
-export function PropertyCard({ title, price, location, image }: PropertyCardProps) {
+export function PropertyCard({ id, title, price, location, image }: PropertyCardProps) {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push(`/property/${id}`);
+  };
+
   return (
-    <Card>
+    <Card onClick={handleClick}>
       <ImageContainer>
         <Image src={image} alt={title} fill sizes="100%" />
       </ImageContainer>
@@ -27,5 +35,5 @@ export function PropertyCard({ title, price, location, image }: PropertyCardProp
         <PropertyLocation>{location}</PropertyLocation>
       </Content>
     </Card>
-  )
+  );
 }
